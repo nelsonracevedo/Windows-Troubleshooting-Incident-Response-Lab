@@ -1,10 +1,10 @@
 # Incident Report
 
 ## Network Problem
-**Incident #:  01
-**Date: 5/25/2026 
-**System/Device: Windows 11 Pro Virtual Machine (Domain-Joined Client) 
-**Severity: Low
+**Incident #:**  01
+**Date:** 5/25/2026 
+**System/Device:** Windows 11 Pro Virtual Machine (Domain-Joined Client) 
+**Severity:** Low
 
 ---
 
@@ -30,13 +30,13 @@ Symptoms observed:
 
 # 3. Environment Details
 
-**Operating System: Windows 11 Pro 
+**Operating System:** Windows 11 Pro 
 
-**Device Type: VMware Virtual Machine 
+**Device Type:** VMware Virtual Machine 
 
-**Network Configuration:  Connected to Active Directory environment
+**Network Configuration:**  Connected to Active Directory environment
 
-**Domain/Workgroup: nelcorp.local
+**Domain/Workgroup:** nelcorp.local
 
 
 ---
@@ -59,6 +59,24 @@ Initial checks performed::
 
 **Action Performed:**
 
+Ping google.com and used nslookup command to test connectivity
+
+**Command Used:**
+
+```cmd
+ping google.com
+nslookup google.com
+```
+**Result**
+When I used the ping command i coundn't communicate with google.com resulting in a 100% loss, and when using nslooup I kept receiving messages saying DNS request timed out.
+
+**Finding**
+Even though we couldn't communicate by using the pinging command it might be just a DNS misconfiguration. However more tests have to be used to actually know what issue we are dealing with.
+
+## Step 2: 
+
+**Action Performed:**
+
 Reviewed the workstation's IP configuration to verify the IP address, default gateway, and DNS settings.
 
 **Command Used:**
@@ -66,14 +84,16 @@ Reviewed the workstation's IP configuration to verify the IP address, default ga
 ```cmd
 ipconfig /all
 ```
-**Result**
+**Result:**
+
 All the workstation network configuration was correct except the DNS server IP which should've been 192.168.44.10 and instead was set to 192.168.65.10
 
-**Finding**
+**Finding:**
+
 The problem might be a DNS server error rather than a connection error
 
 
-## Step 2: 
+## Step 3: 
 
 **Action Performed:**
 
@@ -89,7 +109,42 @@ ping 8.8.8.8
 The tests of network connectivity to both IPs was a success
 
 **Finding**
-In fact the problem was the incorrect settings in the DNS server IP address
+In fact the problem was the incorrect settings in the DNS server IP address.
+
+## Step 4: 
+
+**Action Performed:**
+
+Updated Network configuration for the preferred DNS address to point to the server's address
+
+**Tool Used:**
+
+Network adapter properties window
+
+**Result**
+The workstation was now able to communicate with the right DNS IP address 
+
+## Step 5: 
+
+**Action Performed:**
+
+Tested that everything was working normally by accesing a website in the browser and pinging google.com again
+
+**Tool Used:**
+
+Internet Browser and command Prompt
+
+**Command used:**
+
+```cmd
+ping google.com
+```
+**Result:**
+
+Both tests were a success.
+
+
+
 
 
 
