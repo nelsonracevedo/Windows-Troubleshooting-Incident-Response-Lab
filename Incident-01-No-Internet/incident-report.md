@@ -67,10 +67,12 @@ Ping google.com and used nslookup command to test connectivity
 ping google.com
 nslookup google.com
 ```
-**Result**
+**Result:**
+
 When I used the ping command i coundn't communicate with google.com resulting in a 100% loss, and when using nslooup I kept receiving messages saying DNS request timed out.
 
-**Finding**
+**Finding:**
+
 Even though we couldn't communicate by using the pinging command it might be just a DNS misconfiguration. However more tests have to be used to actually know what issue we are dealing with.
 
 ## Step 2: 
@@ -105,10 +107,12 @@ Ping the server IP (192.168.44.10) and the Google Public DNS ip (8.8.8.8)
 ping 192.168.44.10
 ping 8.8.8.8
 ```
-**Result**
+**Result:**
+
 The tests of network connectivity to both IPs was a success
 
-**Finding**
+**Finding:**
+
 In fact the problem was the incorrect settings in the DNS server IP address.
 
 ## Step 4: 
@@ -121,7 +125,8 @@ Updated Network configuration for the preferred DNS address to point to the serv
 
 Network adapter properties window
 
-**Result**
+**Result:**
+
 The workstation was now able to communicate with the right DNS IP address 
 
 ## Step 5: 
@@ -143,9 +148,27 @@ ping google.com
 
 Both tests were a success.
 
+# 6. Root Cause
 
+The problem was caused by a DNS misconfiguration, because of it the workstation couldn't communicate with the DNS server which make impossible to access websites or services by their domain name.
 
+# 7. Resolution
 
+Steps performed:
+- Tested the network to see if it was a connectivity problem or just a DNS misconfiguration.
+- Reviewed the Network setting to see if there was a misconfiguration.
+- Corrected the DNS misconfiguration.
+- Tested DNS resolution and internet connectivity.
 
+# 8. Verification
 
+Tests performed:
+- Tested connectivity by using the ping command to ping google.com
+- Tested connectivity again by accessing a website in the internet browser
+
+# 9. Screenshots / Evidence
+
+# 10. Lessons Learned
+
+This incident shows how important the DNS server is, specially in an Active Directory environment. It also showed how a small misconfiguration can ruin everything.
 
