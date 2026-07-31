@@ -2,8 +2,11 @@
 
 ## Network Problem
 **Incident #:**  01
+
 **Date:** 5/25/2026 
+
 **System/Device:** Windows 11 Pro Virtual Machine (Domain-Joined Client) 
+
 **Severity:** Low
 
 ---
@@ -167,6 +170,45 @@ Tests performed:
 - Tested connectivity again by accessing a website in the internet browser
 
 # 9. Screenshots / Evidence
+## 1. Initial Issue
+The user was unable to access websites due to a network connectivity issue.
+
+![Browser Error](screenshots/1-browser-error.png)
+
+---
+
+## 2. Initial Investigation
+Verified the workstation's network configuration and connectivity using Command Prompt.
+
+![Investigation - Command Prompt](screenshots/2-investigation-cmd.png)
+
+---
+
+## 3. Root Cause Evidence
+Identified that the workstation was configured with an incorrect DNS server.
+
+![Incorrect DNS Configuration](screenshots/3-evidence-incorrect-DNS-IP.png)
+
+---
+
+## 4. Resolution
+Updated the DNS configuration to use the correct DNS server.
+
+![DNS Configuration Corrected](screenshots/4-resolution.png)
+
+---
+
+## 5. Browser Verification
+Confirmed that websites loaded successfully after applying the fix.
+
+![Browser Test](screenshots/5-browser-test.png)
+
+---
+
+## 6. Command-Line Verification
+Verified successful DNS resolution and network connectivity using Command Prompt.
+
+![Command Prompt Verification](screenshots/6-test-cmd.png)
 
 # 10. Lessons Learned
 
