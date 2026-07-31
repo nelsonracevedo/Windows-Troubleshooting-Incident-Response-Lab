@@ -7,7 +7,7 @@
 
 **System/Device:** Windows 11 Pro Virtual Machine (Domain-Joined Client) 
 
-**Severity:** Low
+**Severity:** Medium
 
 ---
 
