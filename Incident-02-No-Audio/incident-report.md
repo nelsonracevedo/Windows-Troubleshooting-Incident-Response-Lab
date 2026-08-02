@@ -118,44 +118,34 @@ Tests performed:
 
 # 9. Screenshots / Evidence
 ## 1. Initial Issue
-The user was unable to access websites due to a network connectivity issue.
 
-![Browser Error](screenshots/1-browser-error.png)
+The user reported that no audio was being played through the workstation speakers.
 
----
-
-## 2. Initial Investigation
-Verified the workstation's network configuration and connectivity using Command Prompt.
-
-![Investigation - Command Prompt](screenshots/2-investigation-cmd.png)
+![Audio Error](screenshots/1-audio-error.png)
 
 ---
 
-## 3. Root Cause Evidence
-Identified that the workstation was configured with an incorrect DNS server.
+## 2. Investigation
 
-![Incorrect DNS Configuration](screenshots/3-evidence-incorrect-DNS-IP.png)
+Opened **Device Manager** to inspect the status of the audio device and verify whether a driver issue was present.
 
----
-
-## 4. Resolution
-Updated the DNS configuration to use the correct DNS server.
-
-![DNS Configuration Corrected](screenshots/4-resolution.png)
+![Device Manager Investigation](screenshots/2-investigation-device-manager.png)
 
 ---
 
-## 5. Browser Verification
-Confirmed that websites loaded successfully after applying the fix.
+## 3. Resolution
 
-![Browser Test](screenshots/5-browser-test.png)
+Reinstalled the audio driver and verified that the audio device was recognized correctly by Windows.
+
+![Resolution](screenshots/3-resolution.png)
 
 ---
 
-## 6. Command-Line Verification
-Verified successful DNS resolution and network connectivity using Command Prompt.
+## 4. Verification
 
-![Command Prompt Verification](screenshots/6-test-cmd.png)
+Confirmed that the audio device was functioning properly in **Device Manager** and that the speaker icon no longer displayed any issues.
+
+![Verification](screenshots/4-test-device-management-device-and-speaker-symbol.png)
 
 # 10. Lessons Learned
 
