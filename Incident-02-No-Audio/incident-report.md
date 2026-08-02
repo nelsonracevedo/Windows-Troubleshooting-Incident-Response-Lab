@@ -1,13 +1,13 @@
 # Incident Report
 
-## Network Problem
-**Incident #:**  01
+## No Audio
+**Incident #:**  02
 
-**Date:** 5/25/2026 
+**Date:** 5/30/2026 
 
 **System/Device:** Windows 11 Pro Virtual Machine (Domain-Joined Client) 
 
-**Severity:** Medium
+**Severity:** Low
 
 ---
 
@@ -15,19 +15,14 @@
 
 **Issue Reported:**
 
-Describe the problem from the user's perspective.
-
-Example:
-> The user reported that they couldn't access websites from their workstation 
-
----
-
+The user reported that whenever they played a multimedia file no audio was played.
 # 2. Symptoms
 
 Symptoms observed:
 
-- The computer wouldn't charge any website
-- After failing to charge the website it would show an error "{website domain}'s IP Address could be not found"
+- The computer's speaker wouldn't produce sound at all
+- There was a 'X' symbol next to the speaker symbol at the bottom.
+
 
 ---
 
@@ -48,11 +43,9 @@ Symptoms observed:
 
 Initial checks performed::
 
-- Verified that the Windows 11 client VM was powered on and connected to the network.
-- Confirmed that the issue was only affecting this workstation.
-- Checked the network adapter status and confirmed it was enabled.
-- Tested network connectivity with the ping command.
-- Tested network connectivity with the nslookup command and realized it was a problem with the DNS server. 
+- Verified that the device couldn't produce audio by playing a video.
+- Verified volume levels in the volume mixer.
+- Verified device drivers in the device manager. 
 
 ---
 
@@ -62,112 +55,66 @@ Initial checks performed::
 
 **Action Performed:**
 
-Ping google.com and used nslookup command to test connectivity
+Check if device was showing in the device manager
 
-**Command Used:**
+**Tool Used:**
 
-```cmd
-ping google.com
-nslookup google.com
-```
+Device manager
+
 **Result:**
 
-When I used the ping command i coundn't communicate with google.com resulting in a 100% loss, and when using nslooup I kept receiving messages saying DNS request timed out.
+There wasn't any sound device showing in the device manager
 
 **Finding:**
 
-Even though we couldn't communicate by using the pinging command it might be just a DNS misconfiguration. However more tests have to be used to actually know what issue we are dealing with.
+Because the device didn't appear, it's probable that the drivers were deleted somehow or aren't recognized by the system
 
 ## Step 2: 
 
 **Action Performed:**
 
-Reviewed the workstation's IP configuration to verify the IP address, default gateway, and DNS settings.
+A device scan was done to see if the system was able to recognize the device again and install the drivers back.
 
-**Command Used:**
+**tool Used:**
 
-```cmd
-ipconfig /all
-```
+Device manager
+
 **Result:**
 
-All the workstation network configuration was correct except the DNS server IP which should've been 192.168.44.10 and instead was set to 192.168.65.10
-
-**Finding:**
-
-The problem might be a DNS server error rather than a connection error
+The audio drivers were now showing
 
 
 ## Step 3: 
 
 **Action Performed:**
 
-Ping the server IP (192.168.44.10) and the Google Public DNS ip (8.8.8.8)
-
-**Command Used:**
-
-```cmd
-ping 192.168.44.10
-ping 8.8.8.8
-```
-**Result:**
-
-The tests of network connectivity to both IPs was a success
-
-**Finding:**
-
-In fact the problem was the incorrect settings in the DNS server IP address.
-
-## Step 4: 
-
-**Action Performed:**
-
-Updated Network configuration for the preferred DNS address to point to the server's address
+Check if the audio already works by playing a video
 
 **Tool Used:**
 
-Network adapter properties window
+Youtube website
 
 **Result:**
 
-The workstation was now able to communicate with the right DNS IP address 
+The video's sound was now playing normally, and the x on the side of the speaker disappeared.
 
-## Step 5: 
-
-**Action Performed:**
-
-Tested that everything was working normally by accesing a website in the browser and pinging google.com again
-
-**Tool Used:**
-
-Internet Browser and command Prompt
-
-**Command used:**
-
-```cmd
-ping google.com
-```
-**Result:**
-
-Both tests were a success.
 
 # 6. Root Cause
 
-The problem was caused by a DNS misconfiguration, because of it the workstation couldn't communicate with the DNS server which make impossible to access websites or services by their domain name.
+The problem was caused by an error with the drivers most probably by being deleted from an user by mistake or a system failure.
 
 # 7. Resolution
 
 Steps performed:
-- Tested the network to see if it was a connectivity problem or just a DNS misconfiguration.
-- Reviewed the Network setting to see if there was a misconfiguration.
-- Corrected the DNS misconfiguration.
-- Tested DNS resolution and internet connectivity.
+- Tested the audio.
+- Checked volume levels in the volume mixer
+- Checked if the audio device was being recognized in the device manager.
+- Did a device scan from the device manager.
 
 # 8. Verification
 
 Tests performed:
-- Tested connectivity by using the ping command to ping google.com
-- Tested connectivity again by accessing a website in the internet browser
+- Tested audio by playing a video.
 
 # 9. Screenshots / Evidence
 ## 1. Initial Issue
@@ -212,6 +159,6 @@ Verified successful DNS resolution and network connectivity using Command Prompt
 
 # 10. Lessons Learned
 
-This incident shows how important the DNS server is, specially in an Active Directory environment. It also showed how a small misconfiguration can ruin everything.
+Drives control a device, so not having the correct driver for your device can make your device not work properly or not work at all. Knowing how to perform drivers scans and knowing how to check what kind of device you have installed is crucial to solve this type of issues.
 
 
