@@ -1,6 +1,6 @@
 # Incident Report
 
-## Network Problem
+##  DNS Misconfiguration Causing Internet Access Failure
 **Incident #:**  01
 
 **Date:** 5/25/2026 
@@ -15,10 +15,7 @@
 
 **Issue Reported:**
 
-Describe the problem from the user's perspective.
-
-Example:
-> The user reported that they couldn't access websites from their workstation 
+The user reported that they couldn't access websites from their workstation 
 
 ---
 
@@ -26,7 +23,8 @@ Example:
 
 Symptoms observed:
 
-- The computer wouldn't charge any website
+- The workstation was unable to load any websites.
+- The browser displayed the error: "<website>'s IP address could not be found."
 - After failing to charge the website it would show an error "{website domain}'s IP Address could be not found"
 
 ---
@@ -52,7 +50,6 @@ Initial checks performed::
 - Confirmed that the issue was only affecting this workstation.
 - Checked the network adapter status and confirmed it was enabled.
 - Tested network connectivity with the ping command.
-- Tested network connectivity with the nslookup command and realized it was a problem with the DNS server. 
 
 ---
 
@@ -62,21 +59,20 @@ Initial checks performed::
 
 **Action Performed:**
 
-Ping google.com and used nslookup command to test connectivity
+Tested DNS name resolution by pinging google.com. and pinging 8.8.8.8 (Public Google DNS server)
 
 **Command Used:**
 
 ```cmd
 ping google.com
-nslookup google.com
+ping 8.8.8.8
 ```
 **Result:**
 
-When I used the ping command i coundn't communicate with google.com resulting in a 100% loss, and when using nslooup I kept receiving messages saying DNS request timed out.
+When I used the ping command i couldn't communicate with google.com resulting in a 100% loss. However when pinging 8.8.8.8 an address and not a domain name we got a 0% loss.
 
 **Finding:**
-
-Even though we couldn't communicate by using the pinging command it might be just a DNS misconfiguration. However more tests have to be used to actually know what issue we are dealing with.
+Since when pinging a domain name we aren't able to communicate with the website but when pinging an address directly we are this looks to be likely a DNS name resolution problem. 
 
 ## Step 2: 
 
@@ -112,7 +108,7 @@ ping 8.8.8.8
 ```
 **Result:**
 
-The tests of network connectivity to both IPs was a success
+Both connectivity tests completed successfully.
 
 **Finding:**
 
@@ -153,21 +149,20 @@ Both tests were a success.
 
 # 6. Root Cause
 
-The problem was caused by a DNS misconfiguration, because of it the workstation couldn't communicate with the DNS server which make impossible to access websites or services by their domain name.
+The workstation was configured with an incorrect Preferred DNS Server address. Because the client could not communicate with the Active Directory DNS server, it was unable to resolve domain names, preventing access to websites and other network resources.
 
 # 7. Resolution
 
 Steps performed:
-- Tested the network to see if it was a connectivity problem or just a DNS misconfiguration.
-- Reviewed the Network setting to see if there was a misconfiguration.
-- Corrected the DNS misconfiguration.
-- Tested DNS resolution and internet connectivity.
+- Corrected the Preferred DNS Server address.
+- Verified the network adapter configuration.
+- Confirmed successful DNS name resolution.
+- Verified internet connectivity through both the web browser and Command Prompt.
 
 # 8. Verification
 
 Tests performed:
-- Tested connectivity by using the ping command to ping google.com
-- Tested connectivity again by accessing a website in the internet browser
+- Successfully resolved domain names using nslookup.
 
 # 9. Screenshots / Evidence
 ## 1. Initial Issue
@@ -212,5 +207,4 @@ Verified successful DNS resolution and network connectivity using Command Prompt
 
 # 10. Lessons Learned
 
-This incident shows how important the DNS server is, specially in an Active Directory environment. It also showed how a small misconfiguration can ruin everything.
-
+This incident reinforced the importance of verifying DNS configuration when troubleshooting network connectivity issues. It also demonstrated how a single incorrect DNS setting can prevent access to websites and Active Directory resources even when general network connectivity is functioning correctly.
