@@ -1,11 +1,11 @@
 # Incident Report
 
 ## No Audio
-**Incident #:**  02
+**Incident #:** 02
 
-**Date:** 5/30/2026 
+**Date:** 5/30/2026
 
-**System/Device:** Windows 11 Pro Virtual Machine (Domain-Joined Client) 
+**System/Device:** Windows 11 Pro Virtual Machine (Domain-Joined Client)
 
 **Severity:** Low
 
@@ -15,108 +15,129 @@
 
 **Issue Reported:**
 
-The user reported that whenever they played a multimedia file no audio was played.
+The user reported that no audio was played when attempting to play multimedia files, despite the system appearing to function normally.
+
+---
+
 # 2. Symptoms
 
 Symptoms observed:
 
-- The computer's speaker wouldn't produce sound at all
-- There was a 'X' symbol next to the speaker symbol at the bottom.
-
+- No audio was produced through the system speakers.
+- The speaker icon displayed an "X" in the Windows taskbar, indicating that no audio output device was available.
 
 ---
 
 # 3. Environment Details
 
-**Operating System:** Windows 11 Pro 
+**Operating System:** Windows 11 Pro
 
-**Device Type:** VMware Virtual Machine 
+**Device Type:** VMware Virtual Machine
 
-**Network Configuration:**  Connected to Active Directory environment
+**Network Configuration:** Connected to Active Directory environment
 
 **Domain/Workgroup:** nelcorp.local
-
 
 ---
 
 # 4. Initial Assessment
 
-Initial checks performed::
+Initial checks performed:
 
-- Verified that the device couldn't produce audio by playing a video.
-- Verified volume levels in the volume mixer.
-- Verified device drivers in the device manager. 
+- Verified that the workstation could not produce audio by playing a video.
+- Verified that the volume levels were not muted using the Volume Mixer.
+- Verified whether Windows recognized the installed audio device in Device Manager.
 
 ---
 
 # 5. Troubleshooting Steps
 
-## Step 1: 
+## Step 1
 
 **Action Performed:**
 
-Check if device was showing in the device manager
+Checked whether Windows detected the audio device in Device Manager.
 
 **Tool Used:**
 
-Device manager
+Device Manager
 
 **Result:**
 
-There wasn't any sound device showing in the device manager
+No audio device was listed under **Sound, video and game controllers**.
 
 **Finding:**
 
-Because the device didn't appear, it's probable that the drivers were deleted somehow or aren't recognized by the system
+The missing device suggested that Windows was unable to detect the audio hardware or that the required driver was unavailable.
 
-## Step 2: 
+---
 
-**Action Performed:**
-
-A device scan was done to see if the system was able to recognize the device again and install the drivers back.
-
-**tool Used:**
-
-Device manager
-
-**Result:**
-
-The audio drivers were now showing
-
-
-## Step 3: 
+## Step 2
 
 **Action Performed:**
 
-Check if the audio already works by playing a video
+Performed a hardware scan in Device Manager to detect missing devices and reinstall the appropriate driver.
 
 **Tool Used:**
 
-Youtube website
+Device Manager
 
 **Result:**
 
-The video's sound was now playing normally, and the x on the side of the speaker disappeared.
+Windows successfully detected the audio device and automatically reinstalled the required driver.
 
+**Finding:**
+
+The missing audio device was restored after the hardware scan, indicating that Windows was able to detect the hardware and reload the driver.
+
+---
+
+## Step 3
+
+**Action Performed:**
+
+Verified audio functionality by playing a video.
+
+**Tool Used:**
+
+YouTube (Web Browser)
+
+**Result:**
+
+Audio playback was successful, and the "X" icon was no longer displayed on the taskbar.
+
+---
 
 # 6. Root Cause
 
-The problem was caused by an error with the drivers most probably by being deleted from an user by mistake or a system failure.
+Windows was unable to detect the installed audio device until a hardware scan was performed, preventing the operating system from loading the required audio driver.
+
+---
 
 # 7. Resolution
 
 Steps performed:
-- Tested the audio.
-- Checked volume levels in the volume mixer
-- Checked if the audio device was being recognized in the device manager.
-- Did a device scan from the device manager.
+
+- Verified that the issue was not caused by the system volume.
+- Checked whether the audio device was detected in Device Manager.
+- Performed a hardware scan using Device Manager.
+- Confirmed that Windows automatically reinstalled the required audio driver.
+- Verified successful audio playback.
+
+---
 
 # 8. Verification
 
 Tests performed:
-- Tested audio by playing a video.
+
+- Verified that the audio device appeared correctly in Device Manager.
+- Played a video to confirm audio playback.
+- Confirmed that the speaker icon no longer displayed an "X".
+
+---
 
 # 9. Screenshots / Evidence
+
 ## 1. Initial Issue
 
 The user reported that no audio was being played through the workstation speakers.
@@ -135,7 +156,7 @@ Opened **Device Manager** to inspect the status of the audio device and verify w
 
 ## 3. Resolution
 
-Reinstalled the audio driver and verified that the audio device was recognized correctly by Windows.
+Performed a hardware scan, allowing Windows to detect the audio device and automatically reinstall the required driver.
 
 ![Resolution](screenshots/3-resolution.png)
 
@@ -147,8 +168,8 @@ Confirmed that the audio device was functioning properly in **Device Manager** a
 
 ![Verification](screenshots/4-test-device-management-device-and-speaker-symbol.png)
 
+---
+
 # 10. Lessons Learned
 
-Drives control a device, so not having the correct driver for your device can make your device not work properly or not work at all. Knowing how to perform drivers scans and knowing how to check what kind of device you have installed is crucial to solve this type of issues.
-
-
+This incident demonstrated the importance of verifying hardware detection and driver availability when troubleshooting audio issues. Device Manager is a valuable tool for identifying missing or malfunctioning devices, and performing a hardware scan can restore functionality when Windows fails to detect a device.
