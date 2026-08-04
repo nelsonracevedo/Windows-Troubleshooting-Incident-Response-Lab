@@ -110,8 +110,7 @@ Audio playback was successful, and the "X" icon was no longer displayed on the t
 
 # 6. Root Cause
 
-Windows was unable to detect the installed audio device until a hardware scan was performed, preventing the operating system from loading the required audio driver.
-
+The issue occurred because Windows was not detecting the audio device, preventing the operating system from loading the required audio driver. Performing a hardware scan allowed Windows to rediscover the device and restore normal functionality.
 ---
 
 # 7. Resolution
