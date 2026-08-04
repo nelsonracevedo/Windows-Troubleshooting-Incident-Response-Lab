@@ -25,7 +25,6 @@ Symptoms observed:
 
 - The workstation was unable to load any websites.
 - The browser displayed the error: "<website>'s IP address could not be found."
-- After failing to charge the website it would show an error "{website domain}'s IP Address could be not found"
 
 ---
 
@@ -44,7 +43,7 @@ Symptoms observed:
 
 # 4. Initial Assessment
 
-Initial checks performed::
+Initial checks performed:
 
 - Verified that the Windows 11 client VM was powered on and connected to the network.
 - Confirmed that the issue was only affecting this workstation.
@@ -59,7 +58,7 @@ Initial checks performed::
 
 **Action Performed:**
 
-Tested DNS name resolution by pinging google.com. and pinging 8.8.8.8 (Public Google DNS server)
+Tested network connectivity by pinging both a domain name (google.com) and a known public IP address (8.8.8.8).
 
 **Command Used:**
 
@@ -69,10 +68,10 @@ ping 8.8.8.8
 ```
 **Result:**
 
-When I used the ping command i couldn't communicate with google.com resulting in a 100% loss. However when pinging 8.8.8.8 an address and not a domain name we got a 0% loss.
+The ping request to google.com failed with 100% packet loss. However, the ping request to 8.8.8.8 completed successfully with 0% packet loss.
 
 **Finding:**
-Since when pinging a domain name we aren't able to communicate with the website but when pinging an address directly we are this looks to be likely a DNS name resolution problem. 
+The successful ping to a public IP address confirmed that network connectivity was functioning correctly. The failure to resolve a domain name indicated a likely DNS name resolution issue.. 
 
 ## Step 2: 
 
@@ -87,7 +86,7 @@ ipconfig /all
 ```
 **Result:**
 
-All the workstation network configuration was correct except the DNS server IP which should've been 192.168.44.10 and instead was set to 192.168.65.10
+The Preferred DNS Server was configured as 192.168.65.10 instead of the correct address, 192.168.44.10.
 
 **Finding:**
 
@@ -98,7 +97,7 @@ The problem might be a DNS server error rather than a connection error
 
 **Action Performed:**
 
-Ping the server IP (192.168.44.10) and the Google Public DNS ip (8.8.8.8)
+Tested connectivity to the Domain Controller and a public IP address.
 
 **Command Used:**
 
@@ -118,7 +117,7 @@ In fact the problem was the incorrect settings in the DNS server IP address.
 
 **Action Performed:**
 
-Updated Network configuration for the preferred DNS address to point to the server's address
+Updated the Preferred DNS Server address in the network adapter settings.
 
 **Tool Used:**
 
@@ -132,7 +131,7 @@ The workstation was now able to communicate with the right DNS IP address
 
 **Action Performed:**
 
-Tested that everything was working normally by accesing a website in the browser and pinging google.com again
+Tested that everything was working normally by accessing a website in the browser and pinging google.com again
 
 **Tool Used:**
 
@@ -163,6 +162,8 @@ Steps performed:
 
 Tests performed:
 - Successfully resolved domain names using nslookup.
+- Successfully pinged google.com.
+- Confirmed websites loaded correctly in the web browser.
 
 # 9. Screenshots / Evidence
 ## 1. Initial Issue
