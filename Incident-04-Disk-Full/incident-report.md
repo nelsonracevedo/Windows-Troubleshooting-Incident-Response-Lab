@@ -176,7 +176,44 @@ Tests performed:
 
 # 9. Screenshots / Evidence
 
-(Add screenshots here)
+
+## 1. Initial Investigation
+
+Reviewed the available storage on the local disk (C:) using File Explorer and confirmed that the drive was nearly full.
+
+![File Explorer - Low Disk Space](screenshots/1-investigation-File-Explorer.png)
+
+---
+
+## 2. Storage Analysis
+
+Used **Windows Storage Settings** to identify which storage categories were consuming the most disk space.
+
+![Storage Settings Overview](screenshots/2-evidence1-storage-settings.png)
+
+---
+
+## 3. Root Cause Evidence
+
+Reviewed the storage breakdown and determined that Windows Update files and the **Documents** folder were the primary contributors to disk usage. After excluding temporary system files, the Documents folder was identified as containing the largest user-created file.
+
+![Storage Settings - Disk Usage Details](screenshots/3-evidence2-storage-settings-showing-system-updates-storage.png)
+
+---
+
+## 4. Resolution
+
+Deleted the unnecessary PowerPoint presentation and permanently removed it from the Recycle Bin to free disk space.
+
+![Deleting Large File](screenshots/4-resolution-deleting-big-file.png)
+
+---
+
+## 5. Verification
+
+Verified that the available storage on the local disk (C:) had increased after deleting the unnecessary file.
+
+![Available Storage After Cleanup](screenshots/5-storage-check.png)
 
 ---
 
