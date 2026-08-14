@@ -141,7 +141,35 @@ Tests performed:
 
 # 9. Screenshots / Evidence
 
-(Add screenshots here)
+## 1. Initial Issue
+
+The user was unable to log in to the Windows 11 workstation and received a message indicating that the account was disabled.
+
+![Login Error](screenshots/1-login-error.png)
+
+---
+
+## 2. Investigation
+
+Checked the user's account in **Active Directory Users and Computers** to investigate the cause of the authentication failure.
+
+![Checking User in Active Directory](screenshots/2-investigation-checking-user-in-AD.png)
+
+---
+
+## 3. Resolution
+
+Confirmed that the **"Account is disabled"** option was enabled and re-enabled the user's account by unchecking the option.
+
+![Re-enabling Disabled Account](screenshots/3-resolution-unchecking-disable-account.png)
+
+---
+
+## 4. Verification
+
+Tested the user's domain credentials again after re-enabling the account and confirmed that the user was able to log in successfully.
+
+![Successful Login Test](screenshots/6-test-login-succesfull.png)
 
 ---
 
