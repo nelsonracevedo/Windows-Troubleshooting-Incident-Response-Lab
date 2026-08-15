@@ -157,7 +157,43 @@ Tests performed:
 
 # 9. Screenshots / Evidence
 
-(Add screenshots here)
+## 1. Initial Issue
+
+The user was able to see the Finance shared folder but received an "Access Denied" message when attempting to access it.
+
+![Directory Access Denied](screenshots/1-directory-access-denied.png)
+
+---
+
+## 2. Investigation
+
+Reviewed the shared folder's permissions to determine which users and security groups were authorized to access the resource.
+
+![Checking Share Permissions](screenshots/2-investigation-checking-share-permissions.png)
+
+---
+
+## 3. Root Cause Evidence
+
+Checked the user's Active Directory group membership and identified that the user was not a member of the required Finance security group.
+
+![User Not in Required Group](screenshots/3-evidence-user-no-in-right-group.png)
+
+---
+
+## 4. Resolution
+
+Added the user to the appropriate Finance security group to provide the required access to the shared folder.
+
+![Adding User to Finance Group](screenshots/4-resolution-joining-right-group.png)
+
+---
+
+## 5. Verification
+
+Tested the user's access after adding them to the Finance security group and confirmed that the user could successfully access the shared folder.
+
+![Successfully Accessing Folder](screenshots/5-test-succesfully-accesing-folder.png)
 
 ---
 
