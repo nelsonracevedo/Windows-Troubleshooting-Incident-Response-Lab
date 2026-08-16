@@ -2,7 +2,7 @@
 
 ## Domain User Unable to Log In Due to Disabled Account
 
-**Incident #:** 05
+**Incident #:** 04
 
 **Date:** 6/29/2026
 
