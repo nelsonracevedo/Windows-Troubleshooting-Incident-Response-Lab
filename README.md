@@ -53,7 +53,7 @@ The workstation wasn't able to access websites because it was configured with an
 - Network configuration
 - Root cause analysis
 
-[View Incident 01 →](Incident-01-No-Internet/incident-report.dm)
+[View Incident 01 →](Incident-01-No-Internet/incident-report.md)
 
 ---
 
@@ -70,7 +70,7 @@ The  workstation wasn't able to produce audio because the audio device was not b
 - Hardware detection
 - Verification testing
 
-[View Incident 02 →](Incident-02-No-Audio/incident-report.dm)
+[View Incident 02 →](Incident-02-No-Audio/incident-report.md)
 
 ---
 
@@ -88,7 +88,7 @@ The workstation didn't have enough available disk space, preventing the user fro
 - Storage cleanup
 - Verification
 
-[View Incident 03 →](Incident-03-Disk-Full/incident-report.dm)
+[View Incident 03 →](Incident-03-Disk-Full/incident-report.md)
 
 ---
 
@@ -105,7 +105,7 @@ A domain user was unable to log in because their Active Directory account had be
 - Account status investigation
 - Windows login troubleshooting
 
-[View Incident 04 →](Incident-04-Login-Problems/incident-report.dm)
+[View Incident 04 →](Incident-04-Login-Problems/incident-report.md)
 
 ---
 
@@ -123,7 +123,7 @@ A user wasn't able to access a Finance shared folder because they were not a mem
 - Access control troubleshooting
 - User authorization
 
-[View Incident 05 →](Incident-05-Shared-Folder-Permissions/incident-report.dm)
+[View Incident 05 →](Incident-05-Shared-Folder-Permissions/incident-report.md)
 
 ---
 
